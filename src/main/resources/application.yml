@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+
+  jpa:
+    show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
