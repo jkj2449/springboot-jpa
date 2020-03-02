@@ -1,5 +1,6 @@
 package com.springboot.controller;
 
+import com.springboot.dto.PostsListRequestDto;
 import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
 import com.springboot.service.posts.PostsService;
@@ -21,8 +22,13 @@ public class PostsApiController {
         return postsService.findById(id);
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/posts-all")
     public List<PostsListResponseDto> findAll(final Pageable pageable) {
         return postsService.findAll(pageable);
+    }
+
+    @GetMapping("/posts-title/{title}")
+    public List<PostsListResponseDto> findAllByTitle(@PathVariable String title, final Pageable pageable) {
+        return postsService.findAllByTitle(title, pageable);
     }
 }

@@ -2,6 +2,7 @@ package com.springboot.service.posts;
 
 import com.springboot.domain.posts.Posts;
 import com.springboot.domain.posts.PostsRepository;
+import com.springboot.dto.PostsListRequestDto;
 import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,13 @@ public class PostsService {
     @Transactional(readOnly = true)
     public List<PostsListResponseDto> findAll(Pageable pageable) {
         return postsRepository.findAll(pageable).stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllByTitle(String title, Pageable pageable) {
+        return postsRepository.findAllByTitle(title, pageable).stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
