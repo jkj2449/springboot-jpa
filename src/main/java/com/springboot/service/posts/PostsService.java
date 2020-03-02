@@ -1,5 +1,7 @@
 package com.springboot.service.posts;
 
+import com.springboot.domain.comment.Comment;
+import com.springboot.domain.comment.CommentRepository;
 import com.springboot.domain.posts.Posts;
 import com.springboot.domain.posts.PostsRepository;
 import com.springboot.dto.PostsListRequestDto;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class PostsService {
     private final PostsRepository postsRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {

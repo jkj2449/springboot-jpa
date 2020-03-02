@@ -1,13 +1,17 @@
 package com.springboot.domain.posts;
 
 import com.springboot.domain.BaseTimeEntity;
+import com.springboot.domain.comment.Comment;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
 @Entity
 public class Posts extends BaseTimeEntity {
@@ -22,6 +26,9 @@ public class Posts extends BaseTimeEntity {
     private String content;
 
     private String author;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
 
     @Builder
     public Posts(String title, String content, String author) {

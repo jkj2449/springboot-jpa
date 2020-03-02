@@ -1,6 +1,5 @@
 package com.springboot.controller;
 
-import com.springboot.dto.PostsListRequestDto;
 import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
 import com.springboot.service.posts.PostsService;

@@ -1,13 +1,12 @@
 package com.springboot.domain.comment;
 
 import com.springboot.domain.BaseTimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import com.springboot.domain.posts.Posts;
+import lombok.*;
 
 import javax.persistence.*;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
 @Entity
 public class Comment extends BaseTimeEntity {
