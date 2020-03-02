@@ -2,10 +2,15 @@ package com.springboot.service.posts;
 
 import com.springboot.domain.posts.Posts;
 import com.springboot.domain.posts.PostsRepository;
+import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -20,5 +25,12 @@ public class PostsService {
         return PostsResponseDto.builder()
                 .entity(posts)
                 .build();
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAll(Sort.by(Sort.Direction.DESC, "modifiedDate")).stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
