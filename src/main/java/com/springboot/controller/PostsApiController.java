@@ -4,6 +4,7 @@ import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
 import com.springboot.service.posts.PostsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ public class PostsApiController {
     }
 
     @GetMapping("/posts")
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsService.findAllDesc();
+    public List<PostsListResponseDto> findAll(final Pageable pageable) {
+        return postsService.findAll(pageable);
     }
 }

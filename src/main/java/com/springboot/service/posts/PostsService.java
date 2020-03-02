@@ -5,7 +5,7 @@ import com.springboot.domain.posts.PostsRepository;
 import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +28,8 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAll(Sort.by(Sort.Direction.DESC, "modifiedDate")).stream()
+    public List<PostsListResponseDto> findAll(Pageable pageable) {
+        return postsRepository.findAll(pageable).stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
