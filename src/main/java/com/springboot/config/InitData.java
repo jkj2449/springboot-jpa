@@ -22,9 +22,9 @@ public class InitData {
 
     public void initPosts() {
         for (int i = 0; i < 10; i++) {
-            Posts posts = createPosts(i);
+            //Posts posts = createPosts(i);
             //postsRepository.save(posts);
-            commentRepository.save(createComment(posts, i));
+            commentRepository.save(createComment(i));
         }
     }
 
@@ -36,10 +36,11 @@ public class InitData {
                 .build();
     }
 
-    private Comment createComment(Posts posts, int i) {
+    private Comment createComment(int i) {
         return Comment.builder()
                 .comment("comment" + i)
                 .author("author" + i)
+                .posts(createPosts(i))
                 .build();
     }
 }

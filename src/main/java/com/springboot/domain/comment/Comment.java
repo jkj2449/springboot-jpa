@@ -19,9 +19,14 @@ public class Comment extends BaseTimeEntity {
 
     private String author;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "posts_no")
+    private Posts posts;
+
     @Builder
-    public Comment(String comment, String author) {
+    public Comment(String comment, String author, Posts posts) {
         this.comment = comment;
         this.author = author;
+        this.posts = posts;
     }
 }

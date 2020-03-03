@@ -15,7 +15,6 @@ public class PostsListResponseDto {
     private String author;
     private LocalDateTime modifiedDate;
 
-
     @Builder
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();

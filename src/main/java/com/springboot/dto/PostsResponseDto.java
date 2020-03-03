@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Getter
@@ -15,7 +16,7 @@ public class PostsResponseDto {
     private String title;
     private String content;
     private String author;
-    private List<Comment> comments;
+    private List<CommentListResponseDto> comments;
 
     @Builder
     public PostsResponseDto(Posts entity) {
@@ -23,6 +24,9 @@ public class PostsResponseDto {
         this.title = entity.getTitle();
         this.content = entity.getContent();
         this.author = entity.getAuthor();
-        this.comments = entity.getComments();
+        this.comments = entity.getComments()
+                .stream()
+                .map(CommentListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
