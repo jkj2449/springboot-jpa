@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @RequiredArgsConstructor
 @Component
@@ -22,7 +24,7 @@ public class InitData {
 
     public void initPosts() {
         for (int i = 0; i < 10; i++) {
-            //Posts posts = createPosts(i);
+            Posts posts = createPosts(i);
             //postsRepository.save(posts);
             commentRepository.save(createComment(i));
         }

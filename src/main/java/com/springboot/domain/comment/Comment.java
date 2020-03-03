@@ -3,6 +3,7 @@ package com.springboot.domain.comment;
 import com.springboot.domain.BaseTimeEntity;
 import com.springboot.domain.posts.Posts;
 import lombok.*;
+import org.apache.commons.collections4.CollectionUtils;
 
 import javax.persistence.*;
 
@@ -19,6 +20,7 @@ public class Comment extends BaseTimeEntity {
 
     private String author;
 
+    @Setter
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "posts_no")
     private Posts posts;
@@ -28,5 +30,8 @@ public class Comment extends BaseTimeEntity {
         this.comment = comment;
         this.author = author;
         this.posts = posts;
+        if(!posts.getComments().contains(this)) {
+            posts.getComments().add(this);
+        }
     }
 }

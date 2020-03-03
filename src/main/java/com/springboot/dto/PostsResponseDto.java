@@ -1,6 +1,5 @@
 package com.springboot.dto;
 
-import com.springboot.domain.comment.Comment;
 import com.springboot.domain.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
