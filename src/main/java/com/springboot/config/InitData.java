@@ -17,7 +17,7 @@ public class InitData {
     private final PostsRepository postsRepository;
     private final CommentRepository commentRepository;
 
-    @PostConstruct
+    //@PostConstruct
     public void initData() {
         initPosts();
     }
@@ -42,7 +42,6 @@ public class InitData {
         return Comment.builder()
                 .comment("comment" + i)
                 .author("author" + i)
-                .posts(createPosts(i))
                 .build();
     }
 }

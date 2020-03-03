@@ -2,8 +2,9 @@ package com.springboot.domain.comment;
 
 import com.springboot.domain.BaseTimeEntity;
 import com.springboot.domain.posts.Posts;
-import lombok.*;
-import org.apache.commons.collections4.CollectionUtils;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -20,18 +21,18 @@ public class Comment extends BaseTimeEntity {
 
     private String author;
 
-    @Setter
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "posts_no")
+    @JoinColumn(name = "posts_id")
     private Posts posts;
 
     @Builder
-    public Comment(String comment, String author, Posts posts) {
+    public Comment(String comment, String author) {
         this.comment = comment;
         this.author = author;
+    }
+
+    public void setPosts(Posts posts) {
         this.posts = posts;
-        if(!posts.getComments().contains(this)) {
-            posts.getComments().add(this);
-        }
+        posts.addComment(this);
     }
 }

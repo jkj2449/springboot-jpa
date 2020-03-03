@@ -33,4 +33,10 @@ public class Posts extends BaseTimeEntity {
         this.content = content;
         this.author = author;
     }
+
+    public void addComment(Comment comment) {
+        if(!comments.contains(comment)) {
+            comments.add(comment);
+        }
+    }
 }

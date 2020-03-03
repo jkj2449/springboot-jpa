@@ -1,12 +1,10 @@
 package com.springboot.service.posts;
 
-import com.springboot.domain.comment.Comment;
-import com.springboot.domain.comment.CommentRepository;
 import com.springboot.domain.posts.Posts;
 import com.springboot.domain.posts.PostsRepository;
-import com.springboot.dto.PostsListRequestDto;
 import com.springboot.dto.PostsListResponseDto;
 import com.springboot.dto.PostsResponseDto;
+import com.springboot.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,7 +17,6 @@ import java.util.stream.Collectors;
 @Service
 public class PostsService {
     private final PostsRepository postsRepository;
-    private final CommentRepository commentRepository;
 
     @Transactional(readOnly = true)
     public PostsResponseDto findById(Long id) {
@@ -43,5 +40,10 @@ public class PostsService {
         return postsRepository.findAllByTitle(title, pageable).stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Long save(PostsSaveRequestDto requestDto) {
+        return postsRepository.save(requestDto.toEntity()).getId();
     }
 }
